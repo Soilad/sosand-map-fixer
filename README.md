@@ -7,4 +7,4 @@ os
 collections
 
 how to use???:
-make sure ur map.png is in the same folder as the python script and then itll make an output.png which fixes any map errors when run
+make sure ur map.png is in the same folder as the python script and then itll make an output.png which fixes any map errors when run as well as an errors.png which will color all the problematic pixels white

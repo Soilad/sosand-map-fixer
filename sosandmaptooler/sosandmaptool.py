@@ -5,6 +5,9 @@ from collections import defaultdict
 cwd = getcwd()
 
 l = [
+    "(0, 0, 0)",
+    "(126, 142, 158)",
+    "(105, 118, 132)",
     "(195, 92, 109)",
     "(153, 116, 93)",
     "(56, 96, 56)",
@@ -485,16 +488,21 @@ def count_colors(image):
             r, g, b = image.getpixel((x, y))
             if (r, g, b) not in ((0, 0, 0), (126, 142, 158), (105, 118, 132)):
                 # Increment the count for this color
-                color_counts[(r, g, b)] += 1
+           09     color_counts[(r, g, b)] += 1
+            if str((r,g,b)) not in l:
+                image.putpixel((x,y), (255,255,255))
 
+    image.save(f"{cwd}/errors.png")
     return color_counts
 
 
 def main():
     # Path to the image file
-    image_path = Image.open(f"{cwd}/map.png")  # Replace with your image file path
-    oceanless = Image.open(f"{cwd}/oceanless.png")
-    provinceless = Image.open(f"{cwd}/provinceless.png")
+    image_path = Image.open(f"{cwd}/map.png").convert(
+        "RGBA"
+    )  # Replace with your image file path
+    oceanless = Image.open(f"{cwd}/oceanless.png").convert("RGBA")
+    provinceless = Image.open(f"{cwd}/provinceless.png").convert("RGBA")
     output = ImageChops.add(ImageChops.multiply(image_path, oceanless), provinceless)
     output.save(f"{cwd}/output.png")
 

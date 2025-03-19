@@ -488,9 +488,11 @@ def count_colors(image):
             r, g, b = image.getpixel((x, y))
             if (r, g, b) not in ((0, 0, 0), (126, 142, 158), (105, 118, 132)):
                 # Increment the count for this color
-           09     color_counts[(r, g, b)] += 1
+                color_counts[(r, g, b)] += 1
             if str((r,g,b)) not in l:
                 image.putpixel((x,y), (255,255,255))
+            else:
+                image.putpixel((x,y), (0,0,0))
 
     image.save(f"{cwd}/errors.png")
     return color_counts
